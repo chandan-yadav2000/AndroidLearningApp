@@ -13,7 +13,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         Toast.makeText(DashboardActivity.this,"You have been in dashboard",Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, "Welcome to App", Toast.LENGTH_SHORT).show();
 
     }
 }
