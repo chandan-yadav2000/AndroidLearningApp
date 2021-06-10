@@ -15,6 +15,7 @@ public class DashboardActivity extends AppCompatActivity {
         Toast.makeText(DashboardActivity.this,"You have been in dashboard",Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "Welcome to App", Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "Hello Chandan", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Hello pranali", Toast.LENGTH_SHORT).show();
 
     }
 }
