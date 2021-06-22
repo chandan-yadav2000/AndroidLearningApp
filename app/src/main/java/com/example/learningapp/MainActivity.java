@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         sleep(5 * 1000);
-                        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     } catch (Exception e) {

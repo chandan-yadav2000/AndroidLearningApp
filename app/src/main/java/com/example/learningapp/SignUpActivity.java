@@ -3,116 +3,98 @@ package com.example.learningapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
 public class SignUpActivity extends AppCompatActivity
 {
+    TextInputEditText dateTXT;
+    Integer mDate, mMonth, mYear;
+    TextView new_user;
+    Button next_button;
+    ImageView back_button;
 
-    DatePickerDialog datePickerDialog;
-    Button datebutton;
-    TextView signin;
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        initDatePicker();
-        datebutton=findViewById(R.id.datepickerbutton);
-        datebutton.setText(getTextDate());
-        signin = findViewById(R.id.signin_button);
 
-        signin.setOnClickListener(new View.OnClickListener() {
+       back_button = findViewById(R.id.signup_back_button);
+       next_button = findViewById(R.id.signup_next_button);
+
+//        //dateSelect
+//        dateTXT=findViewById(R.id.birth_date);
+//        dateTXT.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                final Calendar cal = Calendar.getInstance();
+//                mDate = cal.get(Calendar.DATE);
+//                mMonth = cal.get(Calendar.MONTH);
+//                mYear = cal.get(Calendar.YEAR);
+//
+//                DatePickerDialog datePickerDialog=new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+//
+//                        dateTXT.setText(date+"-"+month+"-"+year);
+//                    }
+//                }, mYear, mMonth, mDate);
+//                datePickerDialog.show();
+//            }
+//        });
+
+        //to login activity
+        new_user=findViewById(R.id.new_user);
+        new_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
-    private String getTextDate() {
-        Calendar cal= Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month= month+1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
+                Intent i = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(i);
 
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initDatePicker()
-    {
-        datePickerDialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener()
-        {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
-                month = month + 1;
-                String date = makeDateString(day, month, year);
-                datebutton.setText(date);
             }
         });
 
-        Calendar cal= Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        int style = AlertDialog.THEME_HOLO_DARK;
-
-//        datePickerDialog= new DatePickerDialog(year, month, day);
 
 
     }
-    private String makeDateString(int day, int month, int year)
-    {
-        return getMonthFormat(month) + " " + day + " "+ year + " ";
-    }
 
-    private String getMonthFormat(int month)
+    public void callNextSignupScreen(View view)
     {
-        if (month==1)
-            return "Jan";
-        if (month==2)
-            return "Feb";
-        if (month==3)
-            return "March";
-        if (month==4)
-            return "April";
-        if (month==5)
-            return "May";
-        if (month==6)
-            return "June";
-        if (month==7)
-            return "July";
-        if (month==8)
-            return "Aug";
-        if (month==9)
-            return "Sep";
-        if (month==10)
-            return "Oct";
-        if (month==11)
-            return "Nov";
-        if (month==12)
-            return "Dec";
+        Intent intent = new Intent(SignUpActivity.this, SignUpActivity2nd.class);
+        startActivity(intent);
+        //AddTransition
 
-        return "Invalid ";
-            }
-
-    public void openDatePicker(View view)
-    {
-        datePickerDialog.show();
+//        Pair[] pairs = new Pair[4];
+//
+//        pairs[0] = new Pair<View,String>(back_button,"transition_back_arrow_button");
+//        pairs[1] = new Pair<View,String>(next_button,"transition_next_button");
+//        pairs[2] = new Pair<View,String>(new_user,"transition_login_login");
+//
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//            ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(SignUpActivity.this, pairs);
+//            startActivity(intent, activityOptions.toBundle());
+//        }
+//        else {
+//            startActivity(intent);
+//        }
     }
 }
